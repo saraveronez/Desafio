@@ -1,12 +1,13 @@
 using System;
 using desafio_core.Mapping;
 using desafio_core.Model;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
 namespace desafio_core
 {
-     public class ApplicationDbContext : DbContext
+     public class ApplicationDbContext : IdentityDbContext
     {
         public ApplicationDbContext()
         {

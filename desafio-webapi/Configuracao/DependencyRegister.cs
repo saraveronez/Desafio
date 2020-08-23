@@ -20,6 +20,7 @@ namespace desafio_webapi.Configuracoes
           
             // Contracts
             services.AddScoped<IClienteBusiness, ClienteBusiness>();
+            services.AddScoped<IAuthBusiness, AuthBusiness>();
 
             // PowerStock
             services.AddTransient<IHttpContextAccessor, HttpContextAccessor>();

@@ -68,3 +68,15 @@ C:\Users\Usuario\Desktop\DesafioPaschoalotto\desafio-webapi\obj\Debug\netcoreapp
 C:\Users\Usuario\Desktop\DesafioPaschoalotto\desafio-webapi\obj\Debug\netcoreapp3.1\desafio-webapi.dll
 C:\Users\Usuario\Desktop\DesafioPaschoalotto\desafio-webapi\obj\Debug\netcoreapp3.1\desafio-webapi.pdb
 C:\Users\Usuario\Desktop\DesafioPaschoalotto\desafio-webapi\obj\Debug\netcoreapp3.1\desafio-webapi.genruntimeconfig.cache
+C:\Users\Usuario\Desktop\DesafioPaschoalotto\desafio-webapi\bin\Debug\netcoreapp3.1\desafio-webapi.StaticWebAssets.xml
+C:\Users\Usuario\Desktop\DesafioPaschoalotto\desafio-webapi\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\Usuario\Desktop\DesafioPaschoalotto\desafio-webapi\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Cryptography.Internal.dll
+C:\Users\Usuario\Desktop\DesafioPaschoalotto\desafio-webapi\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+C:\Users\Usuario\Desktop\DesafioPaschoalotto\desafio-webapi\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+C:\Users\Usuario\Desktop\DesafioPaschoalotto\desafio-webapi\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Identity.UI.Views.V3.dll
+C:\Users\Usuario\Desktop\DesafioPaschoalotto\desafio-webapi\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Identity.UI.Views.V4.dll
+C:\Users\Usuario\Desktop\DesafioPaschoalotto\desafio-webapi\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Identity.UI.dll
+C:\Users\Usuario\Desktop\DesafioPaschoalotto\desafio-webapi\bin\Debug\netcoreapp3.1\Microsoft.Extensions.FileProviders.Embedded.dll
+C:\Users\Usuario\Desktop\DesafioPaschoalotto\desafio-webapi\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Identity.Core.dll
+C:\Users\Usuario\Desktop\DesafioPaschoalotto\desafio-webapi\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Identity.Stores.dll
+C:\Users\Usuario\Desktop\DesafioPaschoalotto\desafio-webapi\obj\Debug\netcoreapp3.1\desafio-webapi.MvcApplicationPartsAssemblyInfo.cs

@@ -1,15 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { first } from 'rxjs/operators';
 
-@Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
-})
-export class HomeComponent implements OnInit {
+import { User } from '../Models/user';
+
+@Component({ templateUrl: 'home.component.html' })
+export class HomeComponent {
+
 
   constructor() { }
 
   ngOnInit() {
-  }
 
+  };
 }
+
