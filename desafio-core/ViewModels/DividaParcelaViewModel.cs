@@ -6,8 +6,11 @@ namespace desafio_core.ViewModels
 {
     public class DividaParcelaViewModel
     {
-       public string Nome { get; set; }
-        public string Identidade { get; set; }
-        public string UserId { get; set; }
+        public Guid DividaId { get; set; }
+        public DateTime DataVencimento { get; set; }
+        public int NumeroParcela { get; set; }
+        public decimal ValorOriginal { get; set; }
+        public decimal ValorComJuros { get; set; }
+        public bool Pago { get; set; }
     }
 }

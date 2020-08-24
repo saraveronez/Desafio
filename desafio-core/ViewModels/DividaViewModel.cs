@@ -13,5 +13,6 @@ namespace desafio_core.ViewModels
         public DateTime DataVencimento { get; set; }
         public int QuantidadeMaximaParcelas { get; set; }
         public decimal ValorComJuros { get; set; }
+        public List<DividaParcelaViewModel> Parcelas { get; set; } = new List<DividaParcelaViewModel>();
     }
 }

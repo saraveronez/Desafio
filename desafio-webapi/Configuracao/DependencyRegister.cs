@@ -16,13 +16,13 @@ namespace desafio_webapi.Configuracoes
         public static void Register(IServiceCollection services)
         {
             // Context
-            services.AddScoped<ApplicationDbContext, ApplicationDbContext>();
+            services.AddTransient<ApplicationDbContext, ApplicationDbContext>();
 
             // Contracts
             services.AddScoped<IClienteBusiness, ClienteBusiness>();
             services.AddScoped<IAuthBusiness, AuthBusiness>();
             services.AddScoped<IDividaBusiness, DividaBusiness>();
-            // PowerStock
+            
             services.AddTransient<IHttpContextAccessor, HttpContextAccessor>();
             services.AddTransient<IActionContextAccessor, ActionContextAccessor>();
 

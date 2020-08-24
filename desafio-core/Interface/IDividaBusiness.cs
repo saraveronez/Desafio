@@ -9,7 +9,6 @@ namespace desafio_core.Interface
 {
     public interface IDividaBusiness
     {
-        public Task<List<DividaViewModel>> BuscarPorCliente(string userId);
-        public void CalcularParcelas(Guid dividaId);
+        public Task<List<DividaViewModel>> BuscarPorCliente();
     }
 }

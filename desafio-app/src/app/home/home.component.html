@@ -1,6 +1,34 @@
-<div class="card mt-4">
-  <h4 class="card-header">You're logged in with Angular 8 & JWT!!</h4>
-  <div class="card-body">
-      
-  </div>
-</div>
+<p>Dividas!</p>
+<table class="table table-hover">
+  <thead>
+    <tr>
+
+    </tr>
+  </thead>
+  <tbody *ngFor="let divida of dividas">
+    <tr>
+      <th colspan="3">Separado de dividas </th>
+      <th>Entre em contato conosco pelo fone: 99-999999999</th>
+    <tr>
+      <th scope="col">Valor Total</th>
+      <th scope="col">Número de Parcelas</th>
+      <th scope="col">Data Vencimento</th>
+      <th scope="col">Valor com Juros</th>
+    <tr style="cursor:pointer;">
+      <td>{{divida.valorTotal| currency}}</td>
+      <td>{{divida.numeroParcelas}}</td>
+      <td>{{divida.dataVencimento | date: 'dd/MM/yyyy'}}</td>
+      <td>{{divida.valorComJuros | currency}}</td>
+    </tr>
+    <th scope="col">Vencimento Parcela</th>
+    <th scope="col">Número de Parcela</th>
+    <th scope="col">Valor Original</th>
+    <th scope="col">Valor com Juros</th>
+    <tr *ngFor="let parcela of divida.parcelas">
+      <td>{{parcela.dataVencimento | date: 'dd/MM/yyyy'}}</td>
+      <td>{{parcela.numeroParcela}}</td>
+      <td>{{parcela.valorOriginal| currency}}</td>
+      <td>{{parcela.valorComJuros| currency}}</td>
+    </tr>
+  </tbody>
+</table>

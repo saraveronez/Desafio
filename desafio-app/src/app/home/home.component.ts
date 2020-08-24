@@ -1,16 +1,27 @@
 import { Component } from '@angular/core';
-import { first } from 'rxjs/operators';
+import { HomeService } from './home.service';
 
-import { User } from '../Models/user';
+import { Divida } from '../models/Divida';
 
 @Component({ templateUrl: 'home.component.html' })
 export class HomeComponent {
 
+  public dividas: Divida[];
+  constructor(private dividaService: HomeService) { }
 
-  constructor() { }
+  ngOnInit(): void {
+    this.carregarDividas();
+  }
 
-  ngOnInit() {
-
-  };
+  carregarDividas() {
+    this.dividaService.getDividas().subscribe(
+      (dividas: Divida[]) => {
+        this.dividas = dividas;
+      },
+      (erro: any) => {
+        console.log(erro);
+      }
+    );
+  }
 }
 

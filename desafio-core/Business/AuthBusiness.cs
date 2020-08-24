@@ -64,8 +64,10 @@ namespace desafio_core.Business
             try
             {
                 var result = await _signInManager.PasswordSignInAsync(userInfo.Email, userInfo.Senha, isPersistent: false, lockoutOnFailure: false);
+
                 if (result.Succeeded)
                 {
+                    userInfo.Id = _userManager.FindByEmailAsync(userInfo.Email).Result.Id;
                     return BuildToken(userInfo);
                 }
                 else
@@ -94,9 +96,9 @@ namespace desafio_core.Business
 
             var tokenDescription = new SecurityTokenDescriptor
             {
-                Subject =  new ClaimsIdentity(new Claim[]
+                Subject = new ClaimsIdentity(new Claim[]
                 {
-                    new Claim("Usuario", userInfo.Email)
+                    new Claim("userId", userInfo.Id)
                 }),
                 Audience = appSettings.Validado,
                 Expires = DateTime.UtcNow.AddHours(appSettings.ExpiracaoEmHoras),

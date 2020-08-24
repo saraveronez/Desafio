@@ -19,13 +19,11 @@ namespace desafio_webapi.Controllers
     {
         private readonly IClienteBusiness _business;
         private readonly IAuthBusiness _authbusiness;
-        private readonly IDividaBusiness _dividaBusiness;
 
-        public ClienteController(IClienteBusiness business, IAuthBusiness authbusiness, IDividaBusiness dividaBusiness)
+        public ClienteController(IClienteBusiness business, IAuthBusiness authbusiness)
         {
             _business = business;
             _authbusiness = authbusiness;
-            _dividaBusiness = dividaBusiness;
         }
 
         [Authorize("Bearer")]
@@ -50,7 +48,6 @@ namespace desafio_webapi.Controllers
         {
             try
             {
-                _dividaBusiness.CalcularParcelas(new Guid("e30e48ab-2fe4-469e-89eb-4fe45a679ae2"));
                 return await _business.GetAll();
             }
             catch (Exception ex)
