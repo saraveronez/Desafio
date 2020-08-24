@@ -19,20 +19,23 @@ namespace desafio_webapi.Controllers
     {
         private readonly IClienteBusiness _business;
         private readonly IAuthBusiness _authbusiness;
+        private readonly IDividaBusiness _dividaBusiness;
 
-        public ClienteController(IClienteBusiness business, IAuthBusiness authbusiness)
+        public ClienteController(IClienteBusiness business, IAuthBusiness authbusiness, IDividaBusiness dividaBusiness)
         {
             _business = business;
             _authbusiness = authbusiness;
+            _dividaBusiness = dividaBusiness;
         }
 
+        [Authorize("Bearer")]
         [HttpPost]
         [Route("criar")]
-        public async Task<ActionResult<bool>> Criar(Cliente entity)
+        public async Task<ActionResult<bool>> Criar(ClienteViewModel vm)
         {
             try
             {
-                return await _business.Criar(entity);
+                return await _business.Criar(vm);
             }
             catch (Exception ex)
             {
@@ -43,12 +46,11 @@ namespace desafio_webapi.Controllers
         [Authorize("Bearer")]
         [HttpGet]
         [Route("get")]
-        public async Task<ActionResult<List<Cliente>>> Get()
+        public async Task<ActionResult<List<ClienteViewModel>>> Get()
         {
             try
             {
-                var claimsIdentity = this.User.Identity as ClaimsIdentity;
-                var userId = claimsIdentity.Claims.FirstOrDefault().Value;
+                _dividaBusiness.CalcularParcelas(new Guid("e30e48ab-2fe4-469e-89eb-4fe45a679ae2"));
                 return await _business.GetAll();
             }
             catch (Exception ex)

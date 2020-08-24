@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace desafio_core.Interface
 {
-    public interface IClienteBusiness
+    public interface IDividaBusiness
     {
-        public Task<bool> Criar(ClienteViewModel vm);
-        public Task<List<ClienteViewModel>> GetAll();
+        public Task<List<DividaViewModel>> BuscarPorCliente(string userId);
+        public void CalcularParcelas(Guid dividaId);
     }
 }

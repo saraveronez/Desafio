@@ -13,11 +13,8 @@ namespace desafio_core.Mapping
         {
             builder.HasKey(p => p.Id);
             builder.Property(p => p.Id).ValueGeneratedOnAdd();
-            builder.Property(p => p.ValorOriginal).HasColumnType("decimal(5,2)").IsRequired();
-            builder.Property(p => p.ValorJuros).HasColumnType("decimal(5,2)").IsRequired();
-            builder.Property(p => p.ValorFinal).HasColumnType("decimal(5,2)").IsRequired();
-
-          
+            builder.Property(p => p.ValorOriginal).HasColumnType("decimal(10,2)").IsRequired();
+            builder.Property(p => p.ValorComJuros).HasColumnType("decimal(10,2)").IsRequired();
         }
     }
 }

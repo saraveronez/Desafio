@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace desafio_corep.Migrations
 {
-    public partial class Identity : Migration
+    public partial class iniciando : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -44,6 +44,21 @@ namespace desafio_corep.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ConfiguracaoDivida",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(nullable: false),
+                    QuantidadeMaximaParcelas = table.Column<int>(nullable: false),
+                    TipoJurosComposto = table.Column<bool>(nullable: false),
+                    Juros = table.Column<decimal>(type: "decimal(5,2)", nullable: false),
+                    PorcentagemPaschoalotto = table.Column<decimal>(type: "decimal(5,2)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ConfiguracaoDivida", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -152,6 +167,80 @@ namespace desafio_corep.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Cliente",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(nullable: false),
+                    Nome = table.Column<string>(type: "varchar(100)", nullable: false),
+                    Identidade = table.Column<string>(nullable: true),
+                    IdentityUserId = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Cliente", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Cliente_AspNetUsers_IdentityUserId",
+                        column: x => x.IdentityUserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Divida",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(nullable: false),
+                    ClienteId = table.Column<Guid>(nullable: false),
+                    ConfiguracaoDividaId = table.Column<Guid>(nullable: false),
+                    Valor = table.Column<decimal>(type: "decimal(10,2)", nullable: false),
+                    DataVencimento = table.Column<DateTime>(nullable: false),
+                    DiasAtraso = table.Column<int>(nullable: false),
+                    ValorJuros = table.Column<decimal>(type: "decimal(10,2)", nullable: false),
+                    ValorFinalComJuros = table.Column<decimal>(type: "decimal(10,2)", nullable: false),
+                    ValorComissaoPaschoalotto = table.Column<decimal>(type: "decimal(10,2)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Divida", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Divida_Cliente_ClienteId",
+                        column: x => x.ClienteId,
+                        principalTable: "Cliente",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Divida_ConfiguracaoDivida_ConfiguracaoDividaId",
+                        column: x => x.ConfiguracaoDividaId,
+                        principalTable: "ConfiguracaoDivida",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ParcelaDivida",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(nullable: false),
+                    DividaId = table.Column<Guid>(nullable: false),
+                    DataVencimento = table.Column<DateTime>(nullable: false),
+                    NumeroParcela = table.Column<int>(nullable: false),
+                    ValorOriginal = table.Column<decimal>(type: "decimal(10,2)", nullable: false),
+                    ValorComJuros = table.Column<decimal>(type: "decimal(10,2)", nullable: false),
+                    Pago = table.Column<bool>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ParcelaDivida", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_ParcelaDivida_Divida_DividaId",
+                        column: x => x.DividaId,
+                        principalTable: "Divida",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -190,6 +279,26 @@ namespace desafio_corep.Migrations
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Cliente_IdentityUserId",
+                table: "Cliente",
+                column: "IdentityUserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Divida_ClienteId",
+                table: "Divida",
+                column: "ClienteId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Divida_ConfiguracaoDividaId",
+                table: "Divida",
+                column: "ConfiguracaoDividaId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ParcelaDivida_DividaId",
+                table: "ParcelaDivida",
+                column: "DividaId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -210,7 +319,19 @@ namespace desafio_corep.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "ParcelaDivida");
+
+            migrationBuilder.DropTable(
                 name: "AspNetRoles");
+
+            migrationBuilder.DropTable(
+                name: "Divida");
+
+            migrationBuilder.DropTable(
+                name: "Cliente");
+
+            migrationBuilder.DropTable(
+                name: "ConfiguracaoDivida");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");

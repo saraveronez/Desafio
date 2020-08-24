@@ -8,12 +8,10 @@ namespace desafio_core.Model
     {
         public Guid DividaId { get; set; }
         public DateTime DataVencimento { get; set; }
-        public int QuantidadeParcelas { get; set; }
+        public int NumeroParcela { get; set; }
         public decimal ValorOriginal { get; set; }
-        public int DiasAtraso { get; set; }
-        public decimal ValorJuros { get; set; }
-        public decimal ValorFinal { get; set; }
-
+        public decimal ValorComJuros { get; set; }
+        public bool Pago { get; set; }
 
         public virtual Divida Divida { get; set; }
     }

@@ -41,6 +41,7 @@ namespace desafio_core
             modelBuilder.ApplyConfiguration(new ClienteMapping());
             modelBuilder.ApplyConfiguration(new DividaMapping());
             modelBuilder.ApplyConfiguration(new ParcelaDividaMapping());
+            modelBuilder.ApplyConfiguration(new ConfiguracaoDividaMapping());
             base.OnModelCreating(modelBuilder);
         }
 
@@ -49,6 +50,7 @@ namespace desafio_core
         public virtual DbSet<Cliente> Cliente { get; set; }
         public virtual DbSet<Divida> Divida { get; set; }
         public virtual DbSet<ParcelaDivida> ParcelaDivida { get; set; }
+        public virtual DbSet<ConfiguracaoDivida> ConfiguracaoDivida { get; set; }
 
         #endregion
     }

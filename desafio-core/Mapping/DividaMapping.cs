@@ -13,7 +13,10 @@ namespace desafio_core.Mapping
         {
             builder.HasKey(p => p.Id);
             builder.Property(p => p.Id).ValueGeneratedOnAdd();
-            builder.Property(p => p.ValorTotal).HasColumnType("decimal(5,2)").IsRequired();
+            builder.Property(p => p.Valor).HasColumnType("decimal(10,2)").IsRequired();
+            builder.Property(p => p.ValorComissaoPaschoalotto).HasColumnType("decimal(10,2)").IsRequired();
+            builder.Property(p => p.ValorJuros).HasColumnType("decimal(10,2)").IsRequired();
+            builder.Property(p => p.ValorFinalComJuros).HasColumnType("decimal(10,2)").IsRequired();
 
             // Relacionamentos
             builder.HasMany(f => f.Parcelas).WithOne(p => p.Divida).HasForeignKey(p => p.DividaId);

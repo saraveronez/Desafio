@@ -10,8 +10,8 @@ using desafio_core;
 namespace desafio_corep.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200822215315_Identity")]
-    partial class Identity
+    [Migration("20200824005126_iniciando")]
+    partial class iniciando
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -226,13 +226,41 @@ namespace desafio_corep.Migrations
                     b.Property<string>("Identidade")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("IdentityUserId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<string>("Nome")
                         .IsRequired()
                         .HasColumnType("varchar(100)");
 
                     b.HasKey("Id");
 
+                    b.HasIndex("IdentityUserId");
+
                     b.ToTable("Cliente");
+                });
+
+            modelBuilder.Entity("desafio_core.Model.ConfiguracaoDivida", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<decimal>("Juros")
+                        .HasColumnType("decimal(5,2)");
+
+                    b.Property<decimal>("PorcentagemPaschoalotto")
+                        .HasColumnType("decimal(5,2)");
+
+                    b.Property<int>("QuantidadeMaximaParcelas")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("TipoJurosComposto")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ConfiguracaoDivida");
                 });
 
             modelBuilder.Entity("desafio_core.Model.Divida", b =>
@@ -244,12 +272,32 @@ namespace desafio_corep.Migrations
                     b.Property<Guid>("ClienteId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<decimal>("ValorTotal")
-                        .HasColumnType("decimal(5,2)");
+                    b.Property<Guid>("ConfiguracaoDividaId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("DataVencimento")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("DiasAtraso")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("Valor")
+                        .HasColumnType("decimal(10,2)");
+
+                    b.Property<decimal>("ValorComissaoPaschoalotto")
+                        .HasColumnType("decimal(10,2)");
+
+                    b.Property<decimal>("ValorFinalComJuros")
+                        .HasColumnType("decimal(10,2)");
+
+                    b.Property<decimal>("ValorJuros")
+                        .HasColumnType("decimal(10,2)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("ClienteId");
+
+                    b.HasIndex("ConfiguracaoDividaId");
 
                     b.ToTable("Divida");
                 });
@@ -263,23 +311,20 @@ namespace desafio_corep.Migrations
                     b.Property<DateTime>("DataVencimento")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("DiasAtraso")
-                        .HasColumnType("int");
-
                     b.Property<Guid>("DividaId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<int>("QuantidadeParcelas")
+                    b.Property<int>("NumeroParcela")
                         .HasColumnType("int");
 
-                    b.Property<decimal>("ValorFinal")
-                        .HasColumnType("decimal(5,2)");
+                    b.Property<bool>("Pago")
+                        .HasColumnType("bit");
 
-                    b.Property<decimal>("ValorJuros")
-                        .HasColumnType("decimal(5,2)");
+                    b.Property<decimal>("ValorComJuros")
+                        .HasColumnType("decimal(10,2)");
 
                     b.Property<decimal>("ValorOriginal")
-                        .HasColumnType("decimal(5,2)");
+                        .HasColumnType("decimal(10,2)");
 
                     b.HasKey("Id");
 
@@ -339,11 +384,24 @@ namespace desafio_corep.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("desafio_core.Model.Cliente", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "IdentityUser")
+                        .WithMany()
+                        .HasForeignKey("IdentityUserId");
+                });
+
             modelBuilder.Entity("desafio_core.Model.Divida", b =>
                 {
                     b.HasOne("desafio_core.Model.Cliente", "Cliente")
                         .WithMany("Dividas")
                         .HasForeignKey("ClienteId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("desafio_core.Model.ConfiguracaoDivida", "ConfiguracaoDivida")
+                        .WithMany("Dividas")
+                        .HasForeignKey("ConfiguracaoDividaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

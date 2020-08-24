@@ -17,14 +17,15 @@ namespace desafio_webapi.Configuracoes
         {
             // Context
             services.AddScoped<ApplicationDbContext, ApplicationDbContext>();
-          
+
             // Contracts
             services.AddScoped<IClienteBusiness, ClienteBusiness>();
             services.AddScoped<IAuthBusiness, AuthBusiness>();
-
+            services.AddScoped<IDividaBusiness, DividaBusiness>();
             // PowerStock
             services.AddTransient<IHttpContextAccessor, HttpContextAccessor>();
             services.AddTransient<IActionContextAccessor, ActionContextAccessor>();
+
         }
     }
 }
