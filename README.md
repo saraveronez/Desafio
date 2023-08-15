@@ -1,5 +1,4 @@
-# DesafioPaschoalotto
-
+# DividaCliente
 Desenvolvido usando o VSCode
 Instalar o nodeJs para o app 
   npm install
